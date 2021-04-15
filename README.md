@@ -43,3 +43,7 @@ Run standalone
  9. Read output:
     var output4 = netIoDriver.GetOutput(NetIoDriver.OutputName.Output_4); // read output 4
 10. Enjoy!
+
+
+![Screenshot_1](https://user-images.githubusercontent.com/25680930/114856522-8045db00-9de7-11eb-9c6b-400b2b94f383.jpg)
+![Screenshot_2](https://user-images.githubusercontent.com/25680930/114856536-82a83500-9de7-11eb-9fe8-b67658009d73.jpg)
