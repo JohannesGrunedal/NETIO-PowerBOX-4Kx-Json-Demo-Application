@@ -1,0 +1,183 @@
+﻿<Window x:Class="NetIoJsonDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        mc:Ignorable="d"
+        UseLayoutRounding="True" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Background="WhiteSmoke"
+        Title="NETIO PowerBOX 4Kx Json Demo Application" Name="mainWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        
+        <!--controls-->
+        <Grid Grid.Row="0" Margin="0 20 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--setup-->
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="130"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Header="Settings" Margin="20 0 0 0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+                    <Label Margin="40 30 0 0" Height="30">IP address</Label>
+                    <Label Margin="40 10 0 0" Height="30">Username</Label>
+                    <Label Margin="40 10 0 0" Height="30">Password</Label>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+                    <TextBox x:Name="guiIpAddress" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Width="100" Height="30" Margin="0 30 20 0">192.168.11.250</TextBox>
+                    <TextBox x:Name="guiUsername" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 0">netio</TextBox>
+                    <TextBox x:Name="guiPassword" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 0">netio</TextBox>
+                </StackPanel>
+                                    
+                <Button Grid.Row="1" Grid.Column="1" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 20 20" Click="onConnectClick" x:Name="btnConnect" IsDefault="True">Connect</Button>
+            </Grid>
+            
+            <!--info-->
+            <Grid Grid.Column="1" Margin="20 0 0 0" x:Name="guiInfoGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="130"/>
+                </Grid.ColumnDefinitions>
+                
+                <GroupBox Header="Info" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="20 0 0 0">
+                    <Label Margin="0 30 0 0" Height="30">Model</Label>
+                    <Label Margin="0 10 0 0" Height="30">Version</Label>
+                    <Label Margin="0 10 0 0" Height="30">Json version</Label>
+                    <Label Margin="0 10 0 0" Height="30">Device name</Label>
+                    <Label Margin="0 10 0 0" Height="30">OEM id</Label>
+                    <Label Margin="0 10 0 0" Height="30">Serial number</Label>
+                    <Label Margin="0 10 0 0" Height="30">No of outputs</Label>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+                    <TextBox x:Name="guiModel" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Width="105" Height="30" Margin="0 30 20 0" d:Text="NETIO4"/>
+                    <TextBox x:Name="guiModelVersion" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 0" d:Text="1.2.3"/>
+                    <TextBox x:Name="guiJsonVersion" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 0" d:Text="3.2.1"/>
+                    <TextBox x:Name="guiDeviceName" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 0" d:Text="my Device"/>
+                    <TextBox x:Name="guiOemId" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 0" d:Text="123"/>
+                    <TextBox x:Name="guiSerialNumber" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 0" d:Text="aa:bb:cc:11:22:33"/>
+                    <TextBox x:Name="guiNoOfOutputs" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="30" Margin="0 10 20 20" d:Text="4"/>
+                </StackPanel>
+            </Grid>
+            
+            <!--control-->
+            <Grid Grid.Column="2" Margin="20 0 0 0" x:Name="guiControlGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Header="Control" Margin="0 0 20 0" Grid.RowSpan="2" Grid.ColumnSpan="6"/>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0 0 10 0">
+                    <Label Margin="20 30 0 0" Height="30">Output</Label>
+                    <Label Margin="30 10 0 0" Height="30">1</Label>
+                    <Label Margin="30 10 0 0" Height="30">2</Label>
+                    <Label Margin="30 10 0 0" Height="30">3</Label>
+                    <Label Margin="30 10 0 0" Height="30">4</Label>
+                    <Label Margin="30 10 0 0" Height="30">All</Label>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Label Margin="0 30 0 0" Height="30" HorizontalAlignment="Center">Action</Label>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button Height="30" Width="50" Margin="0 0 10 0" Name="btn_Output_1_On" Click="actionButtonClick">On</Button>
+                        <Button Height="30" Width="50" Name="btn_Output_1_Off" Click="actionButtonClick">Off</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button Height="30" Width="50" Margin="0 0 10 0" Name="btn_Output_2_On" Click="actionButtonClick">On</Button>
+                        <Button Height="30" Width="50" Name="btn_Output_2_Off" Click="actionButtonClick">Off</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button Height="30" Width="50" Margin="0 0 10 0" Name="btn_Output_3_On" Click="actionButtonClick">On</Button>
+                        <Button Height="30" Width="50" Name="btn_Output_3_Off" Click="actionButtonClick">Off</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button Height="30" Width="50" Margin="0 0 10 0" Name="btn_Output_4_On" Click="actionButtonClick">On</Button>
+                        <Button Height="30" Width="50" Name="btn_Output_4_Off" Click="actionButtonClick">Off</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                        <Button Height="30" Width="50" Margin="0 0 10 0" Name="btn_Output_All_On" Click="actionButtonClick">On</Button>
+                        <Button Height="30" Width="50" Name="btn_Output_All_Off" Click="actionButtonClick">Off</Button>
+                    </StackPanel>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="10 0 10 0">
+                    <Label Margin="0 30 0 0" Height="30" HorizontalContentAlignment="Center" HorizontalAlignment="Center">Status</Label>
+                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="30" IsHitTestVisible="False" GroupName="1" Name="rbStatusOutput_1"/>
+                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="30" IsHitTestVisible="False" GroupName="2" Name="rbStatusOutput_2"/>
+                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="30" IsHitTestVisible="False" GroupName="3" Name="rbStatusOutput_3"/>
+                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="30" IsHitTestVisible="False" GroupName="4" Name="rbStatusOutput_4"/>
+                </StackPanel>
+
+                <!--volt-->
+                <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center" Margin="0 0 0 0">
+                    <Label Margin="0 30 0 0" Height="30">Voltage [V]</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput1Volt" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput2Volt" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput3Volt" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput4Volt" HorizontalContentAlignment="Center">---</Label>
+                </StackPanel>
+
+                <!--current-->
+                <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Vertical" Margin="0 0 0 0" HorizontalAlignment="Center">
+                    <Label Margin="0 30 0 0" Height="30" HorizontalContentAlignment="Center">Current [mA]</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput1Current" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput2Current" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput3Current" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput4Current" HorizontalContentAlignment="Center">---</Label>
+                </StackPanel>
+
+                <!--power-->
+                <StackPanel Grid.Row="0" Grid.Column="5" Orientation="Vertical" Margin="0 0 30 0">
+                    <Label Margin="0 30 0 0" Height="30" HorizontalContentAlignment="Center">Power [W]</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput1Power" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput2Power" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput3Power" HorizontalContentAlignment="Center">---</Label>
+                    <Label Margin="0 10 0 0" Height="30" x:Name="guiOutput4Power" HorizontalContentAlignment="Center">---</Label>
+                </StackPanel>
+
+                <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 40 20" Click="onStatusButtonClick">Status</Button>
+            </Grid>
+        </Grid>
+
+        <!--info-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Label VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 0 10" Foreground="#FFB9B9B9" FontSize="10">version</Label>
+                <Label x:Name="guiVersion" d:Content="x.x (xxxx-xx-xx)" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="-5 0 0 10" Foreground="#FFB9B9B9" FontSize="10"/>
+            </StackPanel>
+            <Label Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Margin="10" Foreground="#FFB9B9B9" FontSize="10" Width="40" FontWeight="Normal" MouseDown="onInfoClick">Info</Label>
+        </Grid>
+    </Grid>
+</Window>
