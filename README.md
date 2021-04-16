@@ -1,4 +1,4 @@
-# NETIO-PowerBOX-4Kx-Json-Demo-Application
+# NETIO PowerBOX 4Kx Json Demo Application
 Simple C# 'NETIO PowerBOX 4Kx' Json demo application.
 
 Features
